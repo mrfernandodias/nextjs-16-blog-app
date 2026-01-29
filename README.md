@@ -15,9 +15,12 @@
 
 Full-stack blog app built with Next.js App Router, Convex, and Better Auth. Includes a public blog, authenticated post creation, real-time comments, presence, global search, caching, and image uploads via presigned URLs.
 
+Live demo: https://nextjs-16-blog-app-1qp4.vercel.app/
+
 ## Table of Contents
 
 - [Features](#features)
+- [Live Demo](#live-demo)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
@@ -37,6 +40,10 @@ Full-stack blog app built with Next.js App Router, Convex, and Better Auth. Incl
 - Real-time comments and presence per post (Convex subscriptions)
 - Global search backed by Convex full-text indexes
 - Dark mode + responsive UI (shadcn/ui + Tailwind v4)
+
+## Live Demo
+
+https://nextjs-16-blog-app-1qp4.vercel.app/
 
 ## Tech Stack
 
