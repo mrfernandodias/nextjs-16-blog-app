@@ -5,13 +5,14 @@ import { updateTag } from "next/cache";
 import z from "zod";
 
 import { api } from "@/convex/_generated/api";
+import type { Id } from "@/convex/_generated/dataModel";
 import { getToken } from "@/lib/auth-server";
 
 import { postSchema } from "./schemas/blog";
 
 
 export async function createBlogAction(data: z.infer<typeof postSchema>) {
-  let storageId: string | undefined;
+  let storageId: Id<"_storage"> | undefined;
   try {
     const parsed = postSchema.parse(data);
     if (!parsed) {
@@ -40,7 +41,10 @@ export async function createBlogAction(data: z.infer<typeof postSchema>) {
     }
 
     const uploadPayload = await uploadResult.json();
-    storageId = uploadPayload.storageId;
+    if (!uploadPayload?.storageId) {
+      throw new Error("Upload did not return a storageId");
+    }
+    storageId = uploadPayload.storageId as Id<"_storage">;
     await fetchMutation(api.posts.createPost, {
       body: parsed.content,
       title: parsed.title,
